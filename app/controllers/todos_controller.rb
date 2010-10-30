@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+    before_filter :authenticate_user!, :except => [:index]
     def index
       @todos = Todo.all
     end
@@ -8,8 +9,9 @@ class TodosController < ApplicationController
     end
     
     def create
-      @todo = Todo.create(params[:todo] )
-      if @todo.valid?
+      @todo = Todo.new(params[:todo])
+      @todo.update_attributes(:author => current_user.email)
+      if @todo.save
           redirect_to todos_path
       else
           render :action => :new

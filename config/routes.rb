@@ -1,6 +1,6 @@
 Task4::Application.routes.draw do
   devise_for :users
-  resources :todos, :only => [:new, :index]
+  resources :todos, :only => [:new, :index, :create]
   root :to => "todos#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
