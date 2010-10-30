@@ -1,0 +1,7 @@
+- @todos.each do |todo|
+  %p
+    = todo.author
+    %br
+    = todo.description
+  %hr
+%p= link_to "Dodaj nowe TODO", new_todo_path
